@@ -1,16 +1,8 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class mainmenu
 {
@@ -18,7 +10,7 @@ public class mainmenu
 
     private static javafx.scene.control.Button pauseBtn;
 
-    Treat treat = Treat.getInstance();
+    Treat treat = Treat.getTreat_Instance();
 
     public void startMachine(ActionEvent actionEvent)
     {

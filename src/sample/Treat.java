@@ -24,7 +24,7 @@ public class Treat implements Runnable
     private Treat(){}
 
     //Get the only object available
-    public static Treat getInstance(){
+    public static Treat getTreat_Instance(){
         return treat_instance;
     }
 

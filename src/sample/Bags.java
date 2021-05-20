@@ -3,7 +3,7 @@ package sample;
 public class Bags
 {
 
-    private static int numberofBags = 0;
+    private static int numberofBags = 150;
 
     private static Bags instance = new Bags();
 
@@ -16,11 +16,16 @@ public class Bags
         return instance;
     }
 
-    public int Bags(){
+    public int retreiveBags(){
 
         return numberofBags;
     }
 
+
+    public void addBags(int add_bags){
+
+        numberofBags = add_bags;
+    }
 
 
 

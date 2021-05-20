@@ -12,9 +12,19 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        Treat treat = Treat.getInstance();
+        Parent root = FXMLLoader.load(getClass().getResource("mainmenu.fxml"));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
 
-        treat.start_Producing_Treat();
+
+
+
+
+
+
+//        Treat treat = Treat.getInstance();
+//
+//        treat.start_Producing_Treat();
 
 
 

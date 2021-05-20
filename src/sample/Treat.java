@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.control.Alert;
+
 import javax.swing.*;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +14,7 @@ public class Treat implements Runnable
 
     private static int number_of_treats=0;
 
+    private static Boolean thread_stopped=false;
 
 
     private static Treat treat_instance = new Treat();
@@ -32,38 +35,98 @@ public class Treat implements Runnable
         System.out.println(number_of_treats);
     }
 
-   private Thread treat_thread;
+   public Thread treat_thread;
 
     public void start_Producing_Treat()
     {
 
+        if(treat_thread==null)
+        {
+            treat_thread = new Thread(treat_instance);
 
-        cancelled = true;
-        treat_thread = new Thread(treat_instance);
-        treat_thread.start();
-    }
+        }
 
-    public Boolean stop_Producing_Treat()
+        try
+        {
+            if(!thread_stopped )
+            {
+                if(!treat_thread.isAlive()  )
+                {
+                    cancelled = true;
+                    treat_thread.start();
+                }
+                else
+                {
+                    a.setAlertType(Alert.AlertType.WARNING);
+
+                    a.setTitle("Warning");
+                    a.setContentText("Programming is already started");
+                    // show the dialog
+                    a.show();
+
+                }
+            }
+            else
+            {
+                thread_stopped=false;
+
+                treat_thread = new Thread(treat_instance);
+                cancelled = true;
+                treat_thread.start();
+
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.toString());
+        }
+
+            }
+
+    public void stop_Producing_Treat()
     {
 
         if(treat_thread!=null)
         {
+            number_of_treats=0;
             cancelled = false;
-            treat_thread.stop();
-            return true;
+            treat_thread.interrupt();
+            thread_stopped=true;
+            treat_thread=null;
+
         }
 
-        else
-            return false;
     }
 
 
 
 
-    private volatile boolean cancelled;
+    private volatile boolean cancelled=false;
 
 
+    Alert a = new Alert(Alert.AlertType.NONE);
 
+    public void thread_Pause()
+    {
+        if(treat_thread!=null)
+        {
+            cancelled = false;
+            treat_thread.interrupt();
+            thread_stopped=true;
+
+        }
+        else
+        {
+            a.setAlertType(Alert.AlertType.WARNING);
+
+            a.setTitle("Warning");
+            a.setContentText("Programming is not started");
+            // show the dialog
+            a.show();
+        }
+
+    }
 
 
 
@@ -86,4 +149,6 @@ public class Treat implements Runnable
         }
 
     }
+
+
 }

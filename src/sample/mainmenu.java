@@ -1,8 +1,17 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class mainmenu
 {
@@ -12,11 +21,33 @@ public class mainmenu
 
     Treat treat = Treat.getTreat_Instance();
 
+    Parent secondPane;
+
+    //Start
     public void startMachine(ActionEvent actionEvent)
     {
+        Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("packingmachinegui.fxml"));
+
+
+        try {
+             secondPane = secondPageLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        stageTheEventSourceNodeBelongs.setScene(new Scene(secondPane));
+
+
+
+
+
         treat.start_Producing_Treat();
     }
 
+
+    //Stop
     public void stopMachine(ActionEvent actionEvent)
     {
         treat.stop_Producing_Treat();
@@ -26,6 +57,8 @@ public class mainmenu
 
     Alert alert = new Alert(Alert.AlertType.NONE);
 
+
+    //Pause
     public void pauseButtonclicked(ActionEvent actionEvent)
     {
         pauseBtn = (Button) actionEvent.getSource();

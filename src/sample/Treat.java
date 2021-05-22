@@ -1,14 +1,13 @@
 package sample;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 
-import javax.swing.*;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Handler;
 
-public class Treat implements Runnable
-{
+public class Treat extends java.util.Observable implements Runnable {
 
     private int minimumInterval = 3; // 3 seconds by default, can be changed later
 
@@ -21,7 +20,13 @@ public class Treat implements Runnable
 
     //make the constructor private so that this class cannot be
     //instantiated
-    private Treat(){}
+    private Treat()
+    {
+
+
+
+
+    }
 
     //Get the only object available
     public static Treat getTreat_Instance(){
@@ -133,6 +138,12 @@ public class Treat implements Runnable
     @Override
     public void run()
     {
+        Packingmachinegui packingmachinegui = new Packingmachinegui();
+        treat_instance.addObserver(packingmachinegui);
+
+
+
+
         try {
 
             while (cancelled)
@@ -140,14 +151,23 @@ public class Treat implements Runnable
                 add_treat();
                 TimeUnit.SECONDS.sleep(minimumInterval);
                 System.out.println("Sleep");
+                setChanged();
+                notifyObservers();
 
             }
 
         } catch (Exception e)
         {
 
+            System.out.println(String.valueOf(e));
         }
 
+    }
+
+
+    public String getNumber_of_treats()
+    {
+        return String.valueOf(number_of_treats);
     }
 
 

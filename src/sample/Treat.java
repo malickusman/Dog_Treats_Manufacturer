@@ -11,12 +11,16 @@ public class Treat extends java.util.Observable implements Runnable {
 
     private int minimumInterval = 3; // 3 seconds by default, can be changed later
 
-    private static int number_of_treats=0;
+    public static   int number_of_treats=0;
 
     private static Boolean thread_stopped=false;
 
 
     private static Treat treat_instance = new Treat();
+
+    public static boolean cancelled=false;
+
+    Hopper hopper = Hopper.getHopper_instance();
 
     //make the constructor private so that this class cannot be
     //instantiated
@@ -37,13 +41,21 @@ public class Treat extends java.util.Observable implements Runnable {
     {
         number_of_treats++;
 
-        System.out.println(number_of_treats);
+//        System.out.println(number_of_treats);
+        setChanged();
+        notifyObservers(number_of_treats);
+
+
     }
 
    public Thread treat_thread;
 
     public void start_Producing_Treat()
     {
+
+        Hopper hopper = Hopper.getHopper_instance();
+        treat_instance.addObserver(hopper);
+
 
         if(treat_thread==null)
         {
@@ -59,6 +71,7 @@ public class Treat extends java.util.Observable implements Runnable {
                 {
                     cancelled = true;
                     treat_thread.start();
+
                 }
                 else
                 {
@@ -107,7 +120,7 @@ public class Treat extends java.util.Observable implements Runnable {
 
 
 
-    private volatile boolean cancelled=false;
+
 
 
     Alert a = new Alert(Alert.AlertType.NONE);
@@ -138,8 +151,7 @@ public class Treat extends java.util.Observable implements Runnable {
     @Override
     public void run()
     {
-        Packingmachinegui packingmachinegui = new Packingmachinegui();
-        treat_instance.addObserver(packingmachinegui);
+
 
 
 
@@ -148,11 +160,11 @@ public class Treat extends java.util.Observable implements Runnable {
 
             while (cancelled)
             {
-                add_treat();
+
                 TimeUnit.SECONDS.sleep(minimumInterval);
-                System.out.println("Sleep");
-                setChanged();
-                notifyObservers();
+//                System.out.println("Sleep");
+
+                add_treat();
 
             }
 
@@ -165,10 +177,7 @@ public class Treat extends java.util.Observable implements Runnable {
     }
 
 
-    public String getNumber_of_treats()
-    {
-        return String.valueOf(number_of_treats);
-    }
+
 
 
 }

@@ -1,16 +1,27 @@
 package sample;
 
-public class Hopper
+import java.util.Observable;
+import java.util.Observer;
+
+public class Hopper implements Observer
 {
 
+    private int maximumHopperCount = 250;
+
+    private int checktreats=0;
 
 
-    private static Hopper hopper_instance = new Hopper();
+
+
+
+    private static final Hopper hopper_instance = new Hopper();
 
     public static Hopper getHopper_instance ()
     {
         return hopper_instance;
     }
+
+
 
     private Hopper()
     {
@@ -18,10 +29,7 @@ public class Hopper
     }
 
 
-    private void add_Treat()
-    {
 
-    }
 
 
 
@@ -31,4 +39,19 @@ public class Hopper
     }
 
 
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        System.out.println("Hopper");
+
+
+        if(checktreats<=maximumHopperCount)
+        {
+
+            checktreats = (int) arg;
+            System.out.println(checktreats);
+
+        }
+
+    }
 }

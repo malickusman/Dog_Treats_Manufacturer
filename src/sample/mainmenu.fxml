@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainmenu">
    <children>
-      <Button layoutX="137.0" layoutY="32.0" mnemonicParsing="false" onAction="#startMachine" prefHeight="61.0" prefWidth="298.0" text="Start" />
-      <Button layoutX="137.0" layoutY="125.0" mnemonicParsing="false" onAction="#stopMachine" prefHeight="93.0" prefWidth="298.0" text="Stop" />
-      <Button fx:id="pauseBtn" layoutX="131.0" layoutY="258.0" mnemonicParsing="false" onAction="#pauseButtonclicked" prefHeight="111.0" prefWidth="311.0" text="Pause" />
+      <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#startMachine" prefHeight="61.0" prefWidth="298.0" text="Start" />
+      <Button layoutX="24.0" layoutY="107.0" mnemonicParsing="false" onAction="#stopMachine" prefHeight="93.0" prefWidth="298.0" text="Stop" />
+      <Button fx:id="pauseBtn" layoutX="24.0" layoutY="234.0" mnemonicParsing="false" onAction="#pauseButtonclicked" prefHeight="111.0" prefWidth="311.0" text="Pause" />
+      <Label fx:id="treatlable" alignment="CENTER" layoutX="403.0" layoutY="34.0" prefHeight="73.0" prefWidth="95.0" text="0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

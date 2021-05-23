@@ -1,12 +1,14 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -16,6 +18,11 @@ import java.net.URL;
 public class mainmenu
 {
 
+    @FXML
+    private Label treatnolable;
+
+
+    private static Boolean iscancelwhileloop=false;
 
     private static javafx.scene.control.Button pauseBtn;
 
@@ -29,13 +36,14 @@ public class mainmenu
 
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("packingmachinegui.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));
-        stage.show();
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("packingmachinegui.fxml"));
+//        Parent root1 = (Parent) fxmlLoader.load();
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root1));
+//        stage.show();
 
-
+        iscancelwhileloop=true;
+//        lableTreat();
 
         treat.start_Producing_Treat();
     }
@@ -47,6 +55,7 @@ public class mainmenu
         treat.stop_Producing_Treat();
         if(pauseBtn!=null)
         pauseBtn.setText("Pause");
+        iscancelwhileloop=false;
     }
 
     Alert alert = new Alert(Alert.AlertType.NONE);
@@ -94,6 +103,20 @@ public class mainmenu
 
 
     }
+
+
+//    private void lableTreat()
+//    {
+//        while (iscancelwhileloop)
+//        {
+//            if(treatnolable!=null)
+//            treatnolable.setText(String.valueOf(treat.getNumber_of_treats()));
+//
+//        }
+//
+//
+//    }
+
 
 
 

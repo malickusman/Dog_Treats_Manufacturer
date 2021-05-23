@@ -22,7 +22,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class Packingmachinegui implements Initializable,java.util.Observer
+public class Packingmachinegui implements Initializable
 
 {
     @FXML
@@ -50,33 +50,15 @@ public class Packingmachinegui implements Initializable,java.util.Observer
 
 
 
-    Treat treat = Treat.getTreat_Instance();
 
 
 
 
 
-    private void showLable()  {
-
-
-
-        threadnumbers.setText(String.valueOf(treat.getNumber_of_treats()));
-    }
-
-
-
-    @Override
-    public void update(Observable o, Object arg)
-    {
 
 
 
 
-
-        System.out.println("working");
-
-
-    }
 
 
 
@@ -86,7 +68,7 @@ public class Packingmachinegui implements Initializable,java.util.Observer
 
 
 
-        showLable();
+
 
 
     }

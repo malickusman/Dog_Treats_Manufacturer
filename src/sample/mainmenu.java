@@ -24,22 +24,16 @@ public class mainmenu
     Parent secondPane;
 
     //Start
-    public void startMachine(ActionEvent actionEvent)
-    {
-        Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("packingmachinegui.fxml"));
+    public void startMachine(ActionEvent actionEvent) throws IOException {
 
 
-        try {
-             secondPane = secondPageLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        stageTheEventSourceNodeBelongs.setScene(new Scene(secondPane));
 
 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("packingmachinegui.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.show();
 
 
 

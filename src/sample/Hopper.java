@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.fxml.FXML;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,6 +11,7 @@ public class Hopper implements Observer
     private int maximumHopperCount = 250;
 
     private int checktreats=0;
+
 
 
 
@@ -50,6 +53,8 @@ public class Hopper implements Observer
 
             checktreats = (int) arg;
             System.out.println(checktreats);
+
+
 
         }
 

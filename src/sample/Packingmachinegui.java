@@ -22,54 +22,16 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class Packingmachinegui implements Initializable
+public class Packingmachinegui
 
 {
-    @FXML
-    private Label threadnumbers ;
 
-    Packingmachinegui packingmachinegui;
-
-   public Packingmachinegui()
+    public Packingmachinegui(int treats)
     {
-
-
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("packingmachinegui.fxml"));
-//        fxmlLoader.setRoot(this);
-//        fxmlLoader.setController(this);
-//
-//        try {
-//            fxmlLoader.load();
-//        } catch (IOException exception) {
-//            throw new RuntimeException(exception);
-//        }
-
-
 
     }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-
-
-
-
-
-
-    }
 }

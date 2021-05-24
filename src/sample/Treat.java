@@ -79,7 +79,7 @@ public class Treat extends java.util.Observable implements Runnable {
                     a.setAlertType(Alert.AlertType.WARNING);
 
                     a.setTitle("Warning");
-                    a.setContentText("Programming is already started");
+                    a.setContentText("machine is already started");
                     // show the dialog
                     a.show();
 

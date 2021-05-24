@@ -32,13 +32,6 @@ public class Main extends Application  {
 
 
 
-//        Treat treat = Treat.getInstance();
-//
-//        treat.start_Producing_Treat();
-
-
-
-
 
 
 

@@ -12,7 +12,7 @@ public class Packingbagsmachine implements Observer ,Runnable
 
     public  Boolean fiftytreat= false;
 
-    public Boolean startbags=false;
+    public Boolean isbagstarted=false;
 
     private Boolean timerstarted = false;
 
@@ -35,13 +35,19 @@ public class Packingbagsmachine implements Observer ,Runnable
 
     private void startPackingbags()
     {
+
+        isbagstarted=true;
         if(packingbags_thread==null)
         {
             packingbags_thread = new Thread(packingbagsmachine);
+            packingbags_thread.start();
 
         }
         else
         {
+            packingbags_thread = new Thread(packingbagsmachine);
+
+            packingbags_thread.start();
 
         }
     }
@@ -61,6 +67,8 @@ public class Packingbagsmachine implements Observer ,Runnable
         System.out.println("Packing bags");
         System.out.println(arg);
 
+        if(!isbagstarted)
+        startPackingbags();
 
 
     }
@@ -115,11 +123,12 @@ public class Packingbagsmachine implements Observer ,Runnable
         if(treats>50)
             bagoftreats.add(50);
     }
+    Timer timer = new Timer ();
 
     private void timerStart()
     {
         System.out.println("Timer started hua");
-        Timer timer = new Timer ();
+
         TimerTask hourlyTask = new TimerTask () {
             @Override
             public void run ()

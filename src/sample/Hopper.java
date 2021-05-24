@@ -1,11 +1,9 @@
 package sample;
 
-import javafx.fxml.FXML;
-
 import java.util.Observable;
 import java.util.Observer;
 
-public class Hopper implements Observer
+public class Hopper extends Observable implements Observer
 {
 
     private int maximumHopperCount = 250;
@@ -16,8 +14,7 @@ public class Hopper implements Observer
 
 
 
-
-    private static final Hopper hopper_instance = new Hopper();
+    private static  Hopper hopper_instance = new Hopper();
 
     public static Hopper getHopper_instance ()
     {
@@ -29,10 +26,12 @@ public class Hopper implements Observer
     private Hopper()
     {
 
+
     }
 
 
 
+    Packingbagsmachine packingbagsmachine = Packingbagsmachine.getPackingbagsmachine();
 
 
 
@@ -42,11 +41,13 @@ public class Hopper implements Observer
     }
 
 
+
+
     @Override
     public void update(Observable o, Object arg)
     {
         System.out.println("Hopper");
-
+        hopper_instance.addObserver(packingbagsmachine);
 
         if(checktreats<=maximumHopperCount)
         {
@@ -55,8 +56,13 @@ public class Hopper implements Observer
             System.out.println(checktreats);
 
 
+            setChanged();
+            notifyObservers(arg);
+
 
         }
 
     }
+
+
 }

@@ -19,6 +19,7 @@ public class Treat extends java.util.Observable implements Runnable {
     private static Treat treat_instance = new Treat();
 
     public static boolean cancelled=false;
+    public Thread treat_thread;
 
     Hopper hopper = Hopper.getHopper_instance();
 
@@ -48,13 +49,13 @@ public class Treat extends java.util.Observable implements Runnable {
 
     }
 
-   public Thread treat_thread;
 
     public void start_Producing_Treat()
     {
 
         Hopper hopper = Hopper.getHopper_instance();
         treat_instance.addObserver(hopper);
+
 
 
         if(treat_thread==null)

@@ -19,7 +19,7 @@ public class Packingbagsmachine implements Observer ,Runnable
     private int minimumInterval = 15000;
 
 
-    private Thread packingbags_thread;
+    public Thread packingbags_thread;
 
 
 

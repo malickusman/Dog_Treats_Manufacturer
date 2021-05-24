@@ -103,6 +103,8 @@ public class Treat extends java.util.Observable implements Runnable {
 
             }
 
+
+            Packingbagsmachine packingbagsmachine = Packingbagsmachine.getPackingbagsmachine();
     public void stop_Producing_Treat()
     {
 
@@ -113,6 +115,8 @@ public class Treat extends java.util.Observable implements Runnable {
             treat_thread.interrupt();
             thread_stopped=true;
             treat_thread=null;
+            if(packingbagsmachine.packingbags_thread!=null)
+            packingbagsmachine.packingbags_thread.interrupt();
 
         }
 
